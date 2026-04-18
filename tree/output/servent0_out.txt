@@ -1,18 +1,24 @@
-15:53:23 - Starting servent [0|localhost|1100]
-15:53:23 - Pausing for 1000 ms
-15:53:24 - Pausing for 10000 ms
-15:53:24 - Sending message [0|1||TREE_QUERY|2]
-15:53:25 - Sending message [0|0||TREE_QUERY|1]
-15:53:26 - Got message [2|0||TREE_ACCEPT|0]
-15:53:26 - Got message [1|0||TREE_ACCEPT|0]
-15:53:26 - Node is done
-15:53:26 - Parent: 0
-15:53:26 - Children: [1, 2]
-15:53:26 - Unrelated: []
-15:53:26 - I am not leaf, waiting for 2 children
-15:53:30 - Got message [2|5||NODE_DONE|0]
-15:53:30 - Got NODE_DONE from 2
-15:53:31 - Got message [1|4||NODE_DONE|0]
-15:53:31 - Got NODE_DONE from 1
-15:53:31 - All nodes done, tree is finalized!
-15:53:34 - Stopping...
+21:42:20 - Starting servent [0|localhost|1100]
+21:42:20 - Pausing for 1000 ms
+21:42:21 - Pausing for 20000 ms
+21:42:22 - Sending message [0|1||TREE_QUERY|2]
+21:42:23 - Sending message [0|0||TREE_QUERY|1]
+21:42:23 - Got message [2|0||TREE_ACCEPT|0]
+21:42:24 - Got message [1|0||TREE_ACCEPT|0]
+21:42:24 - Node is done
+21:42:24 - Parent: 0
+21:42:24 - Children: [1, 2]
+21:42:24 - Unrelated: []
+21:42:24 - I am not leaf, waiting for 2 children
+21:42:28 - Got message [2|5|3|NODE_DONE|0]
+21:42:29 - Got message [1|4|2|NODE_DONE|0]
+21:42:29 - Tree finalized! Total nodes: 6
+21:42:41 - Pausing for 20000 ms
+21:42:42 - Sending message [0|2|2,2;3,4|RANGE|1]
+21:42:42 - Sending message [0|3|5,6;7,8;9,10|RANGE|2]
+21:42:45 - Got message [1|6|24|RESULT|0]
+21:42:45 - Got result 24 from 1
+21:42:46 - Got message [2|8|151200|RESULT|0]
+21:42:46 - Got result 151200 from 2
+21:42:46 - FINAL RESULT: 3628800
+21:43:01 - Stopping...

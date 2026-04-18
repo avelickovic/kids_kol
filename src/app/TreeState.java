@@ -1,6 +1,7 @@
 package app;
 
 import servent.messeges.tree.NodeDoneMessage;
+import servent.messeges.tree.ResultMessage;
 import servent.messeges.util.MessageUtil;
 
 import java.util.*;
@@ -11,14 +12,15 @@ public class TreeState {
     private boolean treeDone=false;
     public static final Object treeLock=new Object();
     private boolean finalTree=false;
+    private String myRange;
+    private long myResult = 1;
+    private List<Long> childResults = new ArrayList<>();
+    private int expectedChildren = 0;
 
     public boolean isFinalTree() {
         return finalTree;
     }
 
-    public void setFinalTree(boolean finalTree) {
-        this.finalTree = finalTree;
-    }
 
     private Set<Integer> children=new HashSet<>();
     private Set<Integer> unrelated=new HashSet<>();
@@ -43,7 +45,7 @@ public class TreeState {
 
             if (children.isEmpty()) {
                 AppConfig.timestampedStandardPrint("I am leaf, sending NODE_DONE to parent " + parentId);
-                MessageUtil.sendMessage(new NodeDoneMessage(AppConfig.getInfoById(parentId)));
+                MessageUtil.sendMessage(new NodeDoneMessage(AppConfig.getInfoById(parentId),1));
             } else {
                 AppConfig.timestampedStandardPrint("I am not leaf, waiting for " + children.size() + " children");
                 checkAndNotifyParent();
@@ -58,12 +60,39 @@ public class TreeState {
         if (isChildsDone()) {
             boolean isRoot = (parentId == AppConfig.myServentInfo.getId());
             if (isRoot) {
-                AppConfig.timestampedStandardPrint("All nodes done, tree is finalized!");
                 finalTree = true;
+                AppConfig.timestampedStandardPrint("Tree finalized! Total nodes: " + subtreeSize);
             } else {
-                AppConfig.timestampedStandardPrint("All children done, sending NODE_DONE to parent " + parentId);
-                MessageUtil.sendMessage(new NodeDoneMessage(AppConfig.getInfoById(parentId)));
+                AppConfig.timestampedStandardPrint("All children done, sending NODE_DONE to parent " + parentId + " with subtree size " + subtreeSize);
+                MessageUtil.sendMessage(
+                        new NodeDoneMessage(AppConfig.getInfoById(parentId), subtreeSize));
             }
+        }
+    }
+
+    private int subtreeSize = 1;
+    private Map<Integer, Integer> childSubtreeSizes = new HashMap<>();
+
+    public void addChildSubtreeSize(int childId, int size) {
+        childSubtreeSizes.put(childId, size);
+        subtreeSize += size;
+    }
+
+    public int getSubtreeSize() { return subtreeSize; }
+    public Map<Integer, Integer> getChildSubtreeSizes() { return childSubtreeSizes; }
+
+    public void sendResultToParent() {
+        long total = myResult;
+        for (long r : childResults) {
+            total *= r;
+        }
+
+        boolean isRoot = (parentId == AppConfig.myServentInfo.getId());
+        if (isRoot) {
+            AppConfig.timestampedStandardPrint("FINAL RESULT: " + total);
+        } else {
+            MessageUtil.sendMessage(
+                    new ResultMessage(AppConfig.getInfoById(parentId), String.valueOf(total)));
         }
     }
     public void addDoneChild(int childId){
@@ -114,5 +143,48 @@ public class TreeState {
 
     public void setUnrelated(Set<Integer> unrelated) {
         this.unrelated = unrelated;
+    }
+
+    public String getMyRange() {
+        return myRange;
+    }
+
+
+    public void setMyRange(String myRange) {
+        this.myRange = myRange;
+        // postavi koliko dece cekamo
+        this.expectedChildren = children.size();
+    }
+
+    public long getMyResult() {
+        return myResult;
+    }
+
+    public void setMyResult(long myResult) {
+        this.myResult = myResult;
+    }
+
+
+
+    public void setChildResults(List<Long> childResults) {
+        this.childResults = childResults;
+    }
+
+    public int getExpectedChildren() {
+        return expectedChildren;
+    }
+    public void setSubtreeSize(int subtreeSize) {
+        this.subtreeSize = subtreeSize;
+    }
+
+    public void setChildSubtreeSizes(Map<Integer, Integer> childSubtreeSizes) {
+        this.childSubtreeSizes = childSubtreeSizes;
+    }
+    public void addChildResult(long r) { childResults.add(r); }
+    public List<Long> getChildResults() { return childResults; }
+
+    public void setExpectedChildren(int n) { this.expectedChildren = n; }
+    public boolean allChildResultsReceived() {
+        return childResults.size() == expectedChildren;
     }
 }

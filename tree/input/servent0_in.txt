@@ -1,4 +1,6 @@
 pause 1000
 make_tree
-pause 10000
+pause 20000
+factoriel 10
+pause 20000
 stop
