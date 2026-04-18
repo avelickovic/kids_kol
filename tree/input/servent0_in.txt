@@ -1,0 +1,4 @@
+pause 1000
+make_tree
+pause 10000
+stop

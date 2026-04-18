@@ -3,6 +3,9 @@ package servent;
 import app.AppConfig;
 import app.Cancellable;
 import servent.handlers.*;
+import servent.handlers.tree.TreeAcceptHandler;
+import servent.handlers.tree.TreeQueryHandler;
+import servent.handlers.tree.TreeRejectHandler;
 import servent.messeges.Message;
 import servent.messeges.util.MessageUtil;
 
@@ -59,6 +62,15 @@ public class SimpleServentListener implements Runnable, Cancellable {
                         break;
                     case PONG:
                         messageHandler = new PongHandler(clientMessage);
+                        break;
+                    case TREE_ACCEPT:
+                        messageHandler = new TreeAcceptHandler(clientMessage);
+                        break;
+                    case TREE_REJECT:
+                        messageHandler = new TreeRejectHandler(clientMessage);
+                        break;
+                    case TREE_QUERY:
+                        messageHandler = new TreeQueryHandler(clientMessage);
                         break;
                 }
 

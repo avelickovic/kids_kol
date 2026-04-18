@@ -1,0 +1,17 @@
+12:17:06 - Starting servent [5|localhost|1600]
+12:17:06 - Pausing for 10000 ms
+12:17:08 - Got message [2|3||TREE_QUERY|5]
+12:17:08 - Sending accept to 2
+12:17:09 - Sending message [5|2||TREE_QUERY|4]
+12:17:09 - Sending message [5|1||TREE_QUERY|3]
+12:17:09 - Sending message [5|0||TREE_ACCEPT|2]
+12:17:09 - Got message [3|0||TREE_ACCEPT|5]
+12:17:09 - Got message [4|3||TREE_REJECT|5]
+12:17:09 - Node is done
+12:17:09 - Parent: 2
+12:17:09 - Children: [3]
+12:17:09 - Unrelated:  [4]
+12:17:10 - Got message [4|2||TREE_QUERY|5]
+12:17:10 - Already got parent 2sending reject to4
+12:17:11 - Sending message [5|3||TREE_REJECT|4]
+12:17:16 - Stopping...

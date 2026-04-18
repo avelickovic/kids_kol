@@ -21,7 +21,7 @@ public class AppConfig {
     public static ServentInfo myServentInfo;
 
     private static List<ServentInfo> serventInfoList = new ArrayList<>();
-
+    public static TreeState TREE_STATE = new TreeState();
     /**
      * If this is true, the system is a clique - all nodes are each other's
      * neighbors.
@@ -33,6 +33,7 @@ public class AppConfig {
      * if message M1 is sent before message M2 from one node to another,
      * M1 will also be received before M2.
      */
+
     public static boolean IS_FIFO;
 
     /**
