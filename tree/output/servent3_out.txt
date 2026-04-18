@@ -1,20 +1,22 @@
-12:17:06 - Starting servent [3|localhost|1400]
-12:17:06 - Pausing for 10000 ms
-12:17:09 - Got message [5|1||TREE_QUERY|3]
-12:17:09 - Sending accept to 5
-12:17:09 - Got message [4|1||TREE_QUERY|3]
-12:17:09 - Already got parent 5sending reject to4
-12:17:09 - Sending message [3|0||TREE_ACCEPT|5]
-12:17:10 - Got message [1|2||TREE_QUERY|3]
-12:17:10 - Already got parent 5sending reject to1
-12:17:10 - Sending message [3|2||TREE_QUERY|4]
-12:17:10 - Sending message [3|3||TREE_REJECT|4]
-12:17:10 - Sending message [3|1||TREE_QUERY|1]
-12:17:10 - Got message [4|4||TREE_REJECT|3]
-12:17:10 - Sending message [3|4||TREE_REJECT|1]
-12:17:11 - Got message [1|4||TREE_REJECT|3]
-12:17:11 - Node is done
-12:17:11 - Parent: 5
-12:17:11 - Children: []
-12:17:11 - Unrelated:  [1, 4]
-12:17:16 - Stopping...
+15:53:23 - Starting servent [3|localhost|1400]
+15:53:23 - Pausing for 10000 ms
+15:53:26 - Got message [1|2||TREE_QUERY|3]
+15:53:26 - Sending accept to 1
+15:53:26 - Got message [4|1||TREE_QUERY|3]
+15:53:26 - Already got parent 1sending reject to4
+15:53:27 - Sending message [3|0||TREE_ACCEPT|1]
+15:53:27 - Got message [5|1||TREE_QUERY|3]
+15:53:27 - Already got parent 1sending reject to5
+15:53:27 - Sending message [3|2||TREE_QUERY|5]
+15:53:28 - Sending message [3|3||TREE_REJECT|4]
+15:53:28 - Sending message [3|1||TREE_QUERY|4]
+15:53:28 - Got message [5|4||TREE_REJECT|3]
+15:53:28 - Sending message [3|4||TREE_REJECT|5]
+15:53:29 - Got message [4|4||TREE_REJECT|3]
+15:53:29 - Node is done
+15:53:29 - Parent: 1
+15:53:29 - Children: []
+15:53:29 - Unrelated: [4, 5]
+15:53:29 - I am leaf, sending NODE_DONE to parent 1
+15:53:30 - Sending message [3|5||NODE_DONE|1]
+15:53:33 - Stopping...

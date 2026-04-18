@@ -1,9 +1,12 @@
 package servent.handlers.tree;
 
 import app.AppConfig;
+import app.TreeState;
 import servent.handlers.MessageHandler;
 import servent.messeges.Message;
 import servent.messeges.MessageType;
+import servent.messeges.tree.NodeDoneMessage;
+import servent.messeges.util.MessageUtil;
 
 public class TreeAcceptHandler implements MessageHandler {
 
@@ -19,6 +22,7 @@ public class TreeAcceptHandler implements MessageHandler {
             int senderId=clientMessage.getOriginalSenderInfo().getId();
             AppConfig.TREE_STATE.getChildren().add(senderId);
             AppConfig.TREE_STATE.checkNodeLinked();
+
         }
     }
 }
