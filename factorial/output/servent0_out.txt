@@ -1,11 +1,12 @@
-17:02:36 - Starting servent [0|localhost|1100]
-17:02:36 - Pausing for 1000 ms
-17:02:37 - Asking my friend 1 to calculate factorial of 2
-17:02:37 - I will calculate factorial of 3
-17:02:37 - My result is: 60
-17:02:38 - Sending message [0|0|2|FACTORIAL_HELP|1]
-17:02:39 - Got message [1|0|2|FACTORIAL_RESULT|0]
-17:02:39 - Factorial of 5 is: 120
-17:02:39 - Pausing for 1000 ms
-17:02:40 - Pausing for 8000 ms
-17:02:48 - Stopping...
+18:57:18 - Starting servent [0|localhost|1100]
+18:57:18 - Pausing for 1000 ms
+18:57:19 - Asking my friend 1 to calculate factorial of 2
+18:57:19 - I will calculate factorial of 3
+18:57:19 - Pausing for 1000 ms
+18:57:19 - My partial result is: 60
+18:57:20 - Pausing for 8000 ms
+18:57:20 - Sending message [0|0|2|FACTORIAL_HELP|1]
+18:57:21 - Got message [1|0|2|FACTORIAL_RESULT|0]
+18:57:21 - Friend's partial result is: 2
+18:57:21 - Factorial of 5 is: 120
+18:57:28 - Stopping...

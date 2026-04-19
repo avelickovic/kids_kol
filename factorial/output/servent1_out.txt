@@ -1,5 +1,5 @@
-17:02:36 - Starting servent [1|localhost|1200]
-17:02:36 - Pausing for 10000 ms
-17:02:38 - Got message [0|0|2|FACTORIAL_HELP|1]
-17:02:39 - Sending message [1|0|2|FACTORIAL_RESULT|0]
-17:02:46 - Stopping...
+18:57:18 - Starting servent [1|localhost|1200]
+18:57:18 - Pausing for 10000 ms
+18:57:20 - Got message [0|0|2|FACTORIAL_HELP|1]
+18:57:21 - Sending message [1|0|2|FACTORIAL_RESULT|0]
+18:57:28 - Stopping...

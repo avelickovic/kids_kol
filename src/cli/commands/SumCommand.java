@@ -17,6 +17,7 @@ public class SumCommand implements CLICommand {
     @Override
     public void execute(String args) {
         BigInteger number=new BigInteger(args);
+        FactorialShared.reset(args);
         int myId= AppConfig.myServentInfo.getId();
         int friendsId;
         if(myId%2==0){
@@ -31,16 +32,23 @@ public class SumCommand implements CLICommand {
         BigInteger myHalf=number.subtract(friendsHalf);
         AppConfig.timestampedStandardPrint("I will calculate factorial of " + myHalf);
         MessageUtil.sendMessage(new FactorialHelpMessage(AppConfig.myServentInfo,friendInfo,friendsHalf.toString()));
-        BigInteger myResult=BigInteger.ONE;
-        for(BigInteger i=myHalf;i.compareTo(number)!=1;i=i.add(BigInteger.ONE)){
-            myResult=myResult.multiply(i);
-        }
-        AppConfig.timestampedStandardPrint("My result is: " + myResult);
-        while (FactorialShared.friendsHalf.get()==null){
+        BigInteger finalMyHalf = myHalf;
+        BigInteger finalNumber = number;
+        Thread localWorker = new Thread(() -> {
+            BigInteger result = BigInteger.ONE;
+            for (BigInteger i = finalMyHalf; i.compareTo(finalNumber) <= 0; i = i.add(BigInteger.ONE)) {
+                result = result.multiply(i);
+            }
+            AppConfig.timestampedStandardPrint("My partial result is: " + result);
 
-        }
-        BigInteger result=FactorialShared.friendsHalf.get().multiply(myResult);
-        AppConfig.timestampedStandardPrint("Factorial of " +args + " is: " + result);
+            boolean iAmSecond = FactorialShared.submitMyHalf(result);
+            if (iAmSecond) {
+                BigInteger finalResult = FactorialShared.computeResult();
+                AppConfig.timestampedStandardPrint(
+                        "Factorial of " + FactorialShared.getOriginalArgs() + " is: " + finalResult);
+            }
+        });
+        localWorker.start();
 
     }
 }

@@ -1,5 +1,6 @@
 package servent.handlers.factorial;
 
+import app.AppConfig;
 import app.FactorialShared;
 import servent.handlers.MessageHandler;
 import servent.messeges.Message;
@@ -15,6 +16,14 @@ public class FactorialResultHandler implements MessageHandler {
 
     @Override
     public void run() {
-        FactorialShared.friendsHalf.set(new BigInteger(clientMessage.getMessageText()));
+        BigInteger friendResult = new BigInteger(clientMessage.getMessageText());
+        AppConfig.timestampedStandardPrint("Friend's partial result is: " + friendResult);
+
+        boolean iAmSecond = FactorialShared.submitFriendHalf(friendResult);
+        if (iAmSecond) {
+            BigInteger finalResult = FactorialShared.computeResult();
+            AppConfig.timestampedStandardPrint(
+                    "Factorial of " + FactorialShared.getOriginalArgs() + " is: " + finalResult);
+        }
     }
 }
