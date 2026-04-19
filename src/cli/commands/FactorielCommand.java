@@ -1,6 +1,7 @@
 package cli.commands;
 
 import app.AppConfig;
+import servent.messeges.tree.FactorielRequestMessage;
 import servent.messeges.tree.RangeMessage;
 import servent.messeges.util.MessageUtil;
 
@@ -16,15 +17,21 @@ public class FactorielCommand implements CLICommand{
 
     @Override
     public void execute(String args) {
-        if (!AppConfig.TREE_STATE.isFinalTree()) {
-            AppConfig.timestampedErrorPrint("Tree is not finalized");
-            return;
-        }
+
         if (args == null) {
             AppConfig.timestampedErrorPrint("Need a number");
             return;
         }
-
+        int parentId=AppConfig.TREE_STATE.getParentId();
+        if(parentId!=AppConfig.myServentInfo.getId()){
+            AppConfig.timestampedErrorPrint("Not root, forwarding request to parent " + parentId);
+            MessageUtil.sendMessage(new FactorielRequestMessage(AppConfig.getInfoById(parentId), args));
+            return;
+        }
+        if (!AppConfig.TREE_STATE.isFinalTree()) {
+            AppConfig.timestampedErrorPrint("Tree is not finalized");
+            return;
+        }
         int n = Integer.parseInt(args);
         int numOfNodes = AppConfig.getServentCount();
         List<String> ranges = new ArrayList<>();

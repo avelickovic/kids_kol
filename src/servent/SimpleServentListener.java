@@ -79,6 +79,9 @@ public class SimpleServentListener implements Runnable, Cancellable {
                     case RANGE:
                         messageHandler = new RangeHandler(clientMessage);
                         break;
+                    case FACTORIEL_REQUEST:
+                        messageHandler = new FactorielRequsetHandler(clientMessage);
+                        break;
                 }
 
                 threadPool.submit(messageHandler);

@@ -1,25 +1,25 @@
-21:42:20 - Starting servent [3|localhost|1400]
-21:42:20 - Pausing for 40000 ms
-21:42:24 - Got message [1|2||TREE_QUERY|3]
-21:42:24 - Sending accept to 1
-21:42:24 - Got message [4|1||TREE_QUERY|3]
-21:42:24 - Already got parent 1sending reject to4
-21:42:24 - Got message [5|1||TREE_QUERY|3]
-21:42:24 - Already got parent 1sending reject to5
-21:42:25 - Sending message [3|2||TREE_QUERY|5]
-21:42:25 - Sending message [3|0||TREE_ACCEPT|1]
-21:42:25 - Sending message [3|1||TREE_QUERY|4]
-21:42:25 - Sending message [3|3||TREE_REJECT|4]
-21:42:26 - Sending message [3|4||TREE_REJECT|5]
-21:42:26 - Got message [5|4||TREE_REJECT|3]
-21:42:26 - Got message [4|4||TREE_REJECT|3]
-21:42:26 - Node is done
-21:42:26 - Parent: 1
-21:42:26 - Children: []
-21:42:26 - Unrelated: [4, 5]
-21:42:26 - I am leaf, sending NODE_DONE to parent 1
-21:42:28 - Sending message [3|5|1|NODE_DONE|1]
-21:42:43 - Got message [1|5|3,4|RANGE|3]
-21:42:43 - Computed [3,4] = 12
-21:42:45 - Sending message [3|6|12|RESULT|1]
-21:43:00 - Stopping...
+12:04:16 - Starting servent [3|localhost|1400]
+12:04:16 - Pausing for 40000 ms
+12:04:20 - Got message [4|1||TREE_QUERY|3]
+12:04:20 - Sending accept to 4
+12:04:20 - Got message [1|2||TREE_QUERY|3]
+12:04:20 - Already got parent 4sending reject to1
+12:04:20 - Got message [5|1||TREE_QUERY|3]
+12:04:20 - Already got parent 4sending reject to5
+12:04:21 - Sending message [3|0||TREE_ACCEPT|4]
+12:04:21 - Sending message [3|1||TREE_QUERY|1]
+12:04:21 - Sending message [3|2||TREE_QUERY|5]
+12:04:21 - Sending message [3|3||TREE_REJECT|1]
+12:04:21 - Sending message [3|4||TREE_REJECT|5]
+12:04:22 - Got message [5|4||TREE_REJECT|3]
+12:04:22 - Got message [1|4||TREE_REJECT|3]
+12:04:22 - Node is done
+12:04:22 - Parent: 4
+12:04:22 - Children: []
+12:04:22 - Unrelated: [1, 5]
+12:04:22 - I am leaf, sending NODE_DONE to parent 4
+12:04:23 - Sending message [3|5|1|NODE_DONE|4]
+12:04:42 - Got message [4|5|7,8|RANGE|3]
+12:04:42 - Computed [7,8] = 56
+12:04:43 - Sending message [3|6|56|RESULT|4]
+12:04:56 - Stopping...

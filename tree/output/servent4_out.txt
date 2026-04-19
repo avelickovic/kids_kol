@@ -1,25 +1,27 @@
-21:42:20 - Starting servent [4|localhost|1500]
-21:42:20 - Pausing for 40000 ms
-21:42:23 - Got message [2|2||TREE_QUERY|4]
-21:42:23 - Sending accept to 2
-21:42:24 - Sending message [4|0||TREE_ACCEPT|2]
-21:42:24 - Sending message [4|2||TREE_QUERY|5]
-21:42:24 - Sending message [4|1||TREE_QUERY|3]
-21:42:24 - Got message [5|3||TREE_REJECT|4]
-21:42:24 - Got message [5|2||TREE_QUERY|4]
-21:42:24 - Already got parent 2sending reject to5
-21:42:25 - Sending message [4|3||TREE_REJECT|5]
-21:42:25 - Got message [3|1||TREE_QUERY|4]
-21:42:25 - Already got parent 2sending reject to3
-21:42:25 - Got message [3|3||TREE_REJECT|4]
-21:42:25 - Node is done
-21:42:25 - Parent: 2
-21:42:25 - Children: []
-21:42:25 - Unrelated: [3, 5]
-21:42:25 - I am leaf, sending NODE_DONE to parent 2
-21:42:26 - Sending message [4|5|1|NODE_DONE|2]
-21:42:26 - Sending message [4|4||TREE_REJECT|3]
-21:42:44 - Got message [2|6|7,8|RANGE|4]
-21:42:44 - Computed [7,8] = 56
-21:42:44 - Sending message [4|6|56|RESULT|2]
-21:43:00 - Stopping...
+12:04:16 - Starting servent [4|localhost|1500]
+12:04:16 - Pausing for 40000 ms
+12:04:19 - Got message [2|2||TREE_QUERY|4]
+12:04:19 - Sending accept to 2
+12:04:19 - Sending message [4|0||TREE_ACCEPT|2]
+12:04:20 - Sending message [4|1||TREE_QUERY|3]
+12:04:20 - Got message [5|2||TREE_QUERY|4]
+12:04:20 - Already got parent 2sending reject to5
+12:04:20 - Sending message [4|2||TREE_QUERY|5]
+12:04:21 - Got message [3|0||TREE_ACCEPT|4]
+12:04:21 - Got message [5|3||TREE_REJECT|4]
+12:04:21 - Node is done
+12:04:21 - Parent: 2
+12:04:21 - Children: [3]
+12:04:21 - Unrelated: [5]
+12:04:21 - I am not leaf, waiting for 1 children
+12:04:21 - Sending message [4|3||TREE_REJECT|5]
+12:04:23 - Got message [3|5|1|NODE_DONE|4]
+12:04:23 - All children done, sending NODE_DONE to parent 2 with subtree size 2
+12:04:25 - Sending message [4|4|2|NODE_DONE|2]
+12:04:41 - Got message [2|7|5,6;7,8|RANGE|4]
+12:04:41 - Computed [5,6] = 30
+12:04:42 - Sending message [4|5|7,8|RANGE|3]
+12:04:43 - Got message [3|6|56|RESULT|4]
+12:04:43 - Got result 56 from 3
+12:04:44 - Sending message [4|6|1680|RESULT|2]
+12:04:56 - Stopping...
