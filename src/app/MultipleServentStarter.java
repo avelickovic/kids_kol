@@ -106,8 +106,8 @@ public class MultipleServentStarter {
 
     public static void main(String[] args) {
        // startServentTest("primer");
-        startServentTest("tree");
-
+        //startServentTest("tree");
+        startServentTest("factorial");
     }
 
 }

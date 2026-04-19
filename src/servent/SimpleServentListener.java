@@ -3,6 +3,8 @@ package servent;
 import app.AppConfig;
 import app.Cancellable;
 import servent.handlers.*;
+import servent.handlers.factorial.FactorialHelpHandler;
+import servent.handlers.factorial.FactorialResultHandler;
 import servent.handlers.tree.*;
 import servent.messeges.Message;
 import servent.messeges.util.MessageUtil;
@@ -81,6 +83,12 @@ public class SimpleServentListener implements Runnable, Cancellable {
                         break;
                     case FACTORIEL_REQUEST:
                         messageHandler = new FactorielRequsetHandler(clientMessage);
+                        break;
+                    case FACTORIAL_RESULT:
+                        messageHandler = new FactorialResultHandler(clientMessage);
+                        break;
+                    case FACTORIAL_HELP:
+                        messageHandler = new FactorialHelpHandler(clientMessage);
                         break;
                 }
 
