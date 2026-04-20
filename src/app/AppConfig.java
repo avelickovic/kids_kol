@@ -1,5 +1,7 @@
 package app;
 
+import mutex.MutexType;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -33,6 +35,7 @@ public class AppConfig {
      * if message M1 is sent before message M2 from one node to another,
      * M1 will also be received before M2.
      */
+    public static MutexType MUTEX_TYPE = MutexType.NONE;
 
     public static boolean IS_FIFO;
 
@@ -103,7 +106,22 @@ public class AppConfig {
 
         IS_CLIQUE = Boolean.parseBoolean(properties.getProperty("clique", "false"));
         IS_FIFO = Boolean.parseBoolean(properties.getProperty("fifo", "false"));
-
+        MUTEX_TYPE = MutexType.NONE;
+        String mutexTypeString = properties.getProperty("mutex_type");
+        if (mutexTypeString != null) {
+            switch (mutexTypeString) {
+                case "token":
+                    MUTEX_TYPE = MutexType.TOKEN;
+                    break;
+                case "lamport":
+                    MUTEX_TYPE = MutexType.LAMPORT;
+                    break;
+                default:
+                    MUTEX_TYPE = MutexType.NONE;
+                    AppConfig.timestampedErrorPrint("Couldn't parse mutex type: " + mutexTypeString);
+                    break;
+            }
+        }
         for (int i = 0; i < serventCount; i++) {
             String portProperty = "servent"+i+".port";
 

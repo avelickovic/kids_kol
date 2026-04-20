@@ -3,6 +3,10 @@ package cli;
 import app.AppConfig;
 import app.Cancellable;
 import cli.commands.*;
+import cli.commands.mutex.DistributedLockCommand;
+import cli.commands.mutex.DistributedUnlockCommand;
+import cli.commands.mutex.InitTokenMutexCommand;
+import mutex.DistributedMutex;
 import servent.SimpleServentListener;
 import servent.messeges.util.FifoSenderWorker;
 
@@ -34,7 +38,7 @@ public class CLIParser implements Runnable, Cancellable {
 
     private final List<CLICommand> commandList;
 
-    public CLIParser(SimpleServentListener listener, List<FifoSenderWorker> senderThreads) {
+    public CLIParser(SimpleServentListener listener, List<FifoSenderWorker> senderThreads, DistributedMutex mutex) {
         this.commandList = new ArrayList<>();
 
         commandList.add(new InfoCommand());
@@ -43,6 +47,9 @@ public class CLIParser implements Runnable, Cancellable {
         commandList.add(new MakeTreeCommand() );
         commandList.add(new FactorielCommand());
         commandList.add(new SumCommand());
+        commandList.add(new InitTokenMutexCommand(mutex));
+        commandList.add(new DistributedUnlockCommand(mutex));
+        commandList.add(new DistributedLockCommand(mutex));
     }
 
     @Override

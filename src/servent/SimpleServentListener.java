@@ -2,9 +2,11 @@ package servent;
 
 import app.AppConfig;
 import app.Cancellable;
+import mutex.DistributedMutex;
 import servent.handlers.*;
 import servent.handlers.factorial.FactorialHelpHandler;
 import servent.handlers.factorial.FactorialResultHandler;
+import servent.handlers.mutex.TokenHandler;
 import servent.handlers.tree.*;
 import servent.messeges.Message;
 import servent.messeges.util.MessageUtil;
@@ -19,7 +21,10 @@ import java.util.concurrent.Executors;
 public class SimpleServentListener implements Runnable, Cancellable {
 
     private volatile boolean working = true;
-
+    private DistributedMutex mutex;
+    public SimpleServentListener(DistributedMutex mutex) {
+        this.mutex = mutex;
+    }
     /*
      * Thread pool for executing the handlers. Each client will get it's own handler thread.
      */
@@ -89,6 +94,9 @@ public class SimpleServentListener implements Runnable, Cancellable {
                         break;
                     case FACTORIAL_HELP:
                         messageHandler = new FactorialHelpHandler(clientMessage);
+                        break;
+                    case TOKEN:
+                        messageHandler = new TokenHandler(clientMessage, mutex);
                         break;
                 }
 

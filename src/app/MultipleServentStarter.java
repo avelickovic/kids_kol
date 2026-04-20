@@ -107,7 +107,8 @@ public class MultipleServentStarter {
     public static void main(String[] args) {
        // startServentTest("primer");
         //startServentTest("tree");
-        startServentTest("factorial");
+        //startServentTest("factorial");
+        startServentTest("token_mutex");
     }
 
 }

@@ -1,6 +1,8 @@
 package app;
 
 import cli.CLIParser;
+import mutex.DistributedMutex;
+import mutex.TokenMutex;
 import servent.SimpleServentListener;
 import servent.messeges.util.FifoSenderWorker;
 import servent.messeges.util.MessageUtil;
@@ -61,8 +63,18 @@ public class ServentMain {
         MessageUtil.initializePendingMessages();
 
         AppConfig.timestampedStandardPrint("Starting servent " + AppConfig.myServentInfo);
+        DistributedMutex mutex = null;
 
-        SimpleServentListener simpleListener = new SimpleServentListener();
+        switch (AppConfig.MUTEX_TYPE) {
+            case TOKEN:
+                mutex = new TokenMutex();
+                break;
+            default:
+                mutex = null;
+                AppConfig.timestampedErrorPrint("Unknown mutex type in config.");
+                break;
+        }
+        SimpleServentListener simpleListener = new SimpleServentListener(mutex);
         Thread listenerThread = new Thread(simpleListener);
         listenerThread.start();
 
@@ -80,7 +92,7 @@ public class ServentMain {
 
         }
 
-        CLIParser cliParser = new CLIParser(simpleListener, senderWorkers);
+        CLIParser cliParser = new CLIParser(simpleListener, senderWorkers,mutex);
         Thread cliThread = new Thread(cliParser);
         cliThread.start();
 
