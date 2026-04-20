@@ -1,0 +1,17 @@
+20:04:32 - Starting servent [1|localhost|1600]
+20:04:32 - Pausing for 2000 ms
+20:04:33 - Got message [0|0|0|LAMPORT_REQUEST|1]
+20:04:33 - Sending message [1|0|1|LAMPORT_REPLY|0]
+20:04:34 - Trying to get lock...
+20:04:34 - Sending message [1|3|1|LAMPORT_REQUEST|3]
+20:04:34 - Sending message [1|4|1|LAMPORT_REQUEST|4]
+20:04:34 - Sending message [1|1|1|LAMPORT_REQUEST|0]
+20:04:34 - Sending message [1|2|1|LAMPORT_REQUEST|2]
+20:04:34 - Got message [0|4|4|LAMPORT_REPLY|1]
+20:04:34 - Got message [4|1|4|LAMPORT_REPLY|1]
+20:04:34 - Got message [3|1|3|LAMPORT_REPLY|1]
+20:04:34 - Got message [2|1|2|LAMPORT_REPLY|1]
+20:04:37 - Got message [0|5|4|LAMPORT_REQUEST|1]
+20:04:37 - Sending message [1|5|5|LAMPORT_REPLY|0]
+20:04:40 - Got message [0|9|6|LAMPORT_REQUEST|1]
+20:04:40 - Sending message [1|6|7|LAMPORT_REPLY|0]

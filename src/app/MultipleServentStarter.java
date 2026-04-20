@@ -108,7 +108,8 @@ public class MultipleServentStarter {
        // startServentTest("primer");
         //startServentTest("tree");
         //startServentTest("factorial");
-        startServentTest("token_mutex");
+        //startServentTest("token_mutex");
+        startServentTest("lamport_mutex");
     }
 
 }

@@ -6,6 +6,9 @@ import mutex.DistributedMutex;
 import servent.handlers.*;
 import servent.handlers.factorial.FactorialHelpHandler;
 import servent.handlers.factorial.FactorialResultHandler;
+import servent.handlers.mutex.LamportReleaseHandler;
+import servent.handlers.mutex.LamportReplyHandler;
+import servent.handlers.mutex.LamportRequestHandler;
 import servent.handlers.mutex.TokenHandler;
 import servent.handlers.tree.*;
 import servent.messeges.Message;
@@ -97,6 +100,15 @@ public class SimpleServentListener implements Runnable, Cancellable {
                         break;
                     case TOKEN:
                         messageHandler = new TokenHandler(clientMessage, mutex);
+                        break;
+                    case LAMPORT_REQUEST:
+                        messageHandler = new LamportRequestHandler(clientMessage, mutex);
+                        break;
+                    case LAMPORT_REPLY:
+                        messageHandler = new LamportReplyHandler(clientMessage, mutex);
+                        break;
+                    case LAMPORT_RELEASE:
+                        messageHandler = new LamportReleaseHandler(clientMessage, mutex);
                         break;
                 }
 

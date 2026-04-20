@@ -2,6 +2,7 @@ package app;
 
 import cli.CLIParser;
 import mutex.DistributedMutex;
+import mutex.LamportMutex;
 import mutex.TokenMutex;
 import servent.SimpleServentListener;
 import servent.messeges.util.FifoSenderWorker;
@@ -68,6 +69,9 @@ public class ServentMain {
         switch (AppConfig.MUTEX_TYPE) {
             case TOKEN:
                 mutex = new TokenMutex();
+                break;
+            case LAMPORT:
+                mutex = new LamportMutex();
                 break;
             default:
                 mutex = null;
